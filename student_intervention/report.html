@@ -11800,7 +11800,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[12]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Import libraries</span>
@@ -12043,7 +12043,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[13]:</div>
+<div class="prompt input_prompt">In&nbsp;[2]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="n">data_length</span> <span class="o">=</span> <span class="n">student_data</span><span class="o">.</span><span class="n">shape</span>
@@ -12113,7 +12113,7 @@ Graduation rate of the class: 67.09%
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[14]:</div>
+<div class="prompt input_prompt">In&nbsp;[3]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># Extract feature columns</span>
@@ -12195,7 +12195,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[15]:</div>
+<div class="prompt input_prompt">In&nbsp;[4]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">preprocess_features</span><span class="p">(</span><span class="n">X</span><span class="p">):</span>
@@ -12248,7 +12248,7 @@ Feature values:
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[16]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import any additional functionality you may need here</span>
@@ -12451,7 +12451,7 @@ It performs poorly when the training is for very large datasets with millions of
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[17]:</div>
+<div class="prompt input_prompt">In&nbsp;[6]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="k">def</span> <span class="nf">train_classifier</span><span class="p">(</span><span class="n">clf</span><span class="p">,</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">):</span>
@@ -12524,7 +12524,7 @@ It performs poorly when the training is for very large datasets with millions of
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[18]:</div>
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython2"><pre><span></span><span class="c1"># TODO: Import the three supervised learning models from sklearn</span>
@@ -12537,8 +12537,8 @@ It performs poorly when the training is for very large datasets with millions of
 
 <span class="c1"># TODO: Initialize the three models</span>
 <span class="n">clf_A</span> <span class="o">=</span> <span class="n">GaussianNB</span><span class="p">()</span>
-<span class="n">clf_B</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
-<span class="n">clf_C</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="bp">None</span><span class="p">)</span>
+<span class="n">clf_B</span> <span class="o">=</span> <span class="n">tree</span><span class="o">.</span><span class="n">DecisionTreeClassifier</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">clf_C</span> <span class="o">=</span> <span class="n">svm</span><span class="o">.</span><span class="n">SVC</span><span class="p">(</span><span class="n">random_state</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="c1"># TODO: Set up the training set sizes</span>
 <span class="n">X_train_100</span> <span class="o">=</span> <span class="n">X_train</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">100</span><span class="p">]</span>
@@ -12576,58 +12576,58 @@ It performs poorly when the training is for very large datasets with millions of
 <div class="output_area"><div class="prompt"></div>
 <div class="output_subarea output_stream output_stdout output_text">
 <pre>Training a GaussianNB using a training set size of 100. . .
-Trained model in 0.0080 seconds
-Made predictions in 0.0025 seconds.
+Trained model in 0.0028 seconds
+Made predictions in 0.0005 seconds.
 F1 score for training set: 0.8143.
-Made predictions in 0.0007 seconds.
+Made predictions in 0.0006 seconds.
 F1 score for test set: 0.7681.
 Training a GaussianNB using a training set size of 200. . .
-Trained model in 0.0010 seconds
-Made predictions in 0.0008 seconds.
+Trained model in 0.0012 seconds
+Made predictions in 0.0018 seconds.
 F1 score for training set: 0.7969.
 Made predictions in 0.0006 seconds.
 F1 score for test set: 0.7385.
 Training a GaussianNB using a training set size of 300. . .
-Trained model in 0.0024 seconds
-Made predictions in 0.0011 seconds.
+Trained model in 0.0017 seconds
+Made predictions in 0.0008 seconds.
 F1 score for training set: 0.8108.
 Made predictions in 0.0005 seconds.
 F1 score for test set: 0.7121.
 Training a DecisionTreeClassifier using a training set size of 100. . .
-Trained model in 0.0043 seconds
-Made predictions in 0.0005 seconds.
+Trained model in 0.0029 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 1.0000.
 Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7313.
+F1 score for test set: 0.6875.
 Training a DecisionTreeClassifier using a training set size of 200. . .
-Trained model in 0.0012 seconds
-Made predictions in 0.0002 seconds.
+Trained model in 0.0018 seconds
+Made predictions in 0.0006 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0002 seconds.
-F1 score for test set: 0.7597.
+Made predictions in 0.0004 seconds.
+F1 score for test set: 0.7914.
 Training a DecisionTreeClassifier using a training set size of 300. . .
-Trained model in 0.0022 seconds
-Made predictions in 0.0004 seconds.
+Trained model in 0.0018 seconds
+Made predictions in 0.0003 seconds.
 F1 score for training set: 1.0000.
-Made predictions in 0.0004 seconds.
-F1 score for test set: 0.7176.
+Made predictions in 0.0002 seconds.
+F1 score for test set: 0.7218.
 Training a SVC using a training set size of 100. . .
-Trained model in 0.0040 seconds
+Trained model in 0.0029 seconds
 Made predictions in 0.0011 seconds.
 F1 score for training set: 0.8571.
 Made predictions in 0.0008 seconds.
 F1 score for test set: 0.8571.
 Training a SVC using a training set size of 200. . .
-Trained model in 0.0029 seconds
-Made predictions in 0.0025 seconds.
+Trained model in 0.0030 seconds
+Made predictions in 0.0034 seconds.
 F1 score for training set: 0.8512.
-Made predictions in 0.0012 seconds.
+Made predictions in 0.0018 seconds.
 F1 score for test set: 0.8428.
 Training a SVC using a training set size of 300. . .
-Trained model in 0.0058 seconds
-Made predictions in 0.0043 seconds.
+Trained model in 0.0067 seconds
+Made predictions in 0.0052 seconds.
 F1 score for training set: 0.8597.
-Made predictions in 0.0015 seconds.
+Made predictions in 0.0016 seconds.
 F1 score for test set: 0.8535.
 </pre>
 </div>
@@ -12816,11 +12816,15 @@ F1 score for test set: 0.8535.
 </div>
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>**Answer: For the training dataset, the Support Vector Machine defines decision boundaries. A decision boundary separates a set of objects having different classes.</p>
-<ul>
-<li>The optimal decision boundary has the maximum distance to any nearest points of any classes.</li>
-</ul>
-<p>After the decision boundaries are defined, the test point will be classified based on in which region it belongs to</p>
+<p>**Answer:</p>
+<ol>
+<li><p>The SVM takes data about previous students (age, gender, family, etc) and uses them to create a function that draws a boundary between the students who passed and those who didn't. The boundary should be drawn so as to maximize the distance from the boundary to the nearest object (passing student) and from the boundary to the nearest object (failing student).</p>
+</li>
+<li><p>Often, though, it's not easy to draw a decision boundary in low dimensions, so the SVM separates the passing and failing students by rearrange objects from 2 dimensional space to higher dimensional space so we can define the boundary easier (instead of linear line, now we can use plane).</p>
+</li>
+<li><p>Using this function created with students we already know passed or not, the SVM can look at new students' data and predict if the student passes or not (which region that the student belongs to)</p>
+</li>
+</ol>
 
 </div>
 </div>
