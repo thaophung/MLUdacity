@@ -45,7 +45,7 @@ class LearningAgent(Agent):
             self.alpha = 0
         else:
             if Optimized:
-                self.epsilon = self.epsilon - 0.00025*self.trialNumber
+                self.epsilon = self.epsilon - 0.0025*self.trialNumber
             else:
                 self.epsilon = self.epsilon - 0.05
             
@@ -82,7 +82,7 @@ class LearningAgent(Agent):
         if state in self.Q:
             acts = self.Q[state]
             val = list(acts.values())
-            maxQ = max(v)
+            maxQ = max(val)
         return maxQ
 
     def createQ(self, state):
