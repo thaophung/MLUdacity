@@ -3,11 +3,11 @@ import math
 from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
-Optimized=True
+Optimized=False
 class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
         This is the object you will be modifying. """
-    def __init__(self, env, learning=False, epsilon=0.7, alpha=0.4):
+    def __init__(self, env, learning=False, epsilon=1.0, alpha=0.2):
 	super(LearningAgent, self).__init__(env)	# Set the agent in the environment
 	self.planner = RoutePlanner(self.env, self) 	# Create a route planner
 	self.valid_actions = self.env.valid_actions	# The set of valid actions
@@ -65,7 +65,7 @@ class LearningAgent(Agent):
 	## TO DO ##
 	###########
 	# Set 'state as a tuple of relevant data for the agent
-	state = (waypoint, inputs['light'], inputs['left'], inputs['right'], inputs['oncoming'])
+	state = (waypoint, inputs['light'], inputs['oncoming'])
         
 	return state
 
@@ -80,9 +80,7 @@ class LearningAgent(Agent):
 	# Calculate the maximum Q-value of all actions for a given state
         maxQ = None
         if state in self.Q:
-            acts = self.Q[state]
-            val = list(acts.values())
-            maxQ = max(val)
+            maxQ = max(self.Q[state].values())
         return maxQ
 
     def createQ(self, state):
@@ -148,7 +146,7 @@ class LearningAgent(Agent):
 	###########
 	# When learning, implement the value iteration update rule
 	#	Use only the learning rate 'alpha' (do not use the discount factor 'gamma')
-        if self.learn:
+        if self.learning:
             new_value = self.Q[state][action] + self.alpha*(reward - self.Q[state][action])
             self.Q[state][action] = new_value
 
@@ -216,6 +214,6 @@ def run():
     # Flags:
     #   tolerance	- epsilon tolerance before beginning testing, default is 0.05
     #   n_test	- discrete number of testing trials to perform, default is 0
-    sim.run(n_test=25, tolerance=0.3)
+    sim.run(n_test=30, tolerance=0.2)
 if __name__ == '__main__':
     run()	 
