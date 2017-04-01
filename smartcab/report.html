@@ -11865,7 +11865,10 @@ div#notebook {
 <ul>
 <li>The Smartcar does not move at all during the simulation.</li>
 <li>The driving agent receiving rewards based on its action with traffic light.</li>
-<li>The agent gets positive rewards when the light is red and negative rewards when the light is green.</li>
+<li>The agent gets positive rewards when the light is red and negative rewards when the light is green. <ul>
+<li>But when the light is green, if the smartcar want to turn left but there is oncoming car, the reward is positive</li>
+</ul>
+</li>
 </ul>
 
 </div>
@@ -13663,9 +13666,10 @@ wpQkSZIkSZI6YWFKkiRJkiRJnfh/g8HgZgDOQecAAAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>Features are most relevant for learning both safety and efficiency are 'inputs' (light, left, right, on coming), 'waypoint'.
+<li>Features are most relevant for learning both safety and efficiency are 'inputs' (light, oncoming), 'waypoint'.
    +'inputs': they help the agent knows that its next action is safe or not and if it is the right way to go to the destination. 
    +'waypoint': it is the directino that Smartcard should drive in order to reach the destination -&gt; efficiency</li>
+<li>I do not choose 'right' and 'left' since when the light is green, the smart car can go anywhere without noticing the cars from right and left. For deadline, it just gives the information of the number of actions remaining to reach the destination before running out of time, which is not related to safety or efficiency</li>
 </ul>
 
 </div>
@@ -13700,7 +13704,8 @@ wpQkSZIkSZI6YWFKkiRJkiRJnfh/g8HgZgDOQecAAAAASUVORK5CYII=
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong>
-The size of the state space 2^5 = 32</p>
+The size of the state space 2^4 = 16</p>
+<p>I think the driving agent could learn a policy for each possible state within a reasonable number of training trials</p>
 
 </div>
 </div>
@@ -17563,7 +17568,7 @@ AAAASUVORK5CYII=
 <li>Decay function: epsilon = epsilon - 0.00025* trialNumber</li>
 <li>24 training trials</li>
 <li>Epsilon = 1, alpha = 0.2, tolerance = 0.2</li>
-<li>It improved significantly. The safety rate is A+, and reliable rate is A</li>
+<li>It improved significantly compared to the default Q-Learner. Safety and Reliable rates of default on are F while improved one's are A+ and A, which means the improved one explore and learn the policy and perform well.  The exploration factor of improved Q-learner taking more time to reach 0 means that it explores and learns more after each training trial.  </li>
 <li>Yes, I would.</li>
 <li>Yes, I am.</li>
 </ul>
@@ -17598,8 +17603,8 @@ AAAASUVORK5CYII=
 <div class="text_cell_render border-box-sizing rendered_html">
 <p><strong>Answer:</strong></p>
 <ul>
-<li>For each state that has been recorded from the simulation, the policy (the actioin with the highest value) is  correct for the given state sometimes</li>
-<li>No</li>
+<li>For each state that has been recorded from the simulation, the policy (the actioin with the highest value) is  incorrect for the given state sometimes</li>
+<li>Yes, there are states where the policy is different than what would be expected from an optimal policy</li>
 <li><p>E.g 1 
 ('right', 'green', None)
 -- forward : 0.48
@@ -17622,6 +17627,18 @@ AAAASUVORK5CYII=
 <li>The best action 'right' is chosen</li>
 <li>All actions are explored</li>
 <li>The Q-values are what I expect them to be: It's green light, so it's penalized if the action is "None", and the 'oncoming' car is turning right, so it woulb be accident if the smartcar turn left. </li>
+</ul>
+</li>
+<li><p>E.g 3:
+('left', 'green', 'forward')
+-- forward : 0.74
+-- None : -1.76
+-- right : 0.27
+-- left : -4.04</p>
+<ul>
+<li>The best action 'forward' is not chosen, instead, the bad action 'left' is chosen </li>
+<li>All actions are explored</li>
+<li>It's green light and have an oncoming car is moving forward, so it is the best if smartcar turn right or forward which have positive rewards, but smart car chooses to turn left which causes the accident.</li>
 </ul>
 </li>
 </ul>
