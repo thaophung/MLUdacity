@@ -3,15 +3,14 @@ import math
 from environment import Agent, Environment
 from planner import RoutePlanner
 from simulator import Simulator
-Optimized=False
+Optimized=True
 class LearningAgent(Agent):
     """ An agent that learns to drive in the Smartcab world.
         This is the object you will be modifying. """
-    def __init__(self, env, learning=False, epsilon=1.0, alpha=0.2):
+    def __init__(self, env, learning=False, epsilon=1, alpha=0.2):
 	super(LearningAgent, self).__init__(env)	# Set the agent in the environment
 	self.planner = RoutePlanner(self.env, self) 	# Create a route planner
 	self.valid_actions = self.env.valid_actions	# The set of valid actions
-
 	# Set parameters of the learning agent
 	self.learning = learning	# Whether the agent is expected to learn
 	self.Q = dict()			# Create a Q-table which will be a dictionary of tuples
@@ -23,8 +22,8 @@ class LearningAgent(Agent):
 	## TO DO ##
 	###########
 	# Set any additional class parameters as needed
-        self.possible_actions = ["forward", "left", "right", "None"]
         self.trialNumber = 1
+        self.possible_actions = ["None", "forward", "left", "right"]
     def reset(self, destination=None, testing=False):
 	""" The reset function is called at the beginning of each trial.
 	    'testing' is set to True if testing trials are being used 
@@ -45,7 +44,7 @@ class LearningAgent(Agent):
             self.alpha = 0
         else:
             if Optimized:
-                self.epsilon = self.epsilon - 0.0025*self.trialNumber
+                self.epsilon = self.epsilon - 0.003*self.trialNumber
             else:
                 self.epsilon = self.epsilon - 0.05
             
@@ -65,7 +64,7 @@ class LearningAgent(Agent):
 	## TO DO ##
 	###########
 	# Set 'state as a tuple of relevant data for the agent
-	state = (waypoint, inputs['light'], inputs['oncoming'])
+	state = (waypoint, inputs['light'], inputs['left'],inputs['oncoming'])
         
 	return state
 
@@ -97,10 +96,10 @@ class LearningAgent(Agent):
                 pass
             else:
                 self.Q[state] = {}
+                self.Q[state]['None'] = 0.0
                 self.Q[state]['forward'] = 0.0
                 self.Q[state]['left'] = 0.0
                 self.Q[state]['right'] = 0.0
-                self.Q[state]['None'] = 0.0
 
 	
     def choose_action(self, state):
@@ -131,7 +130,7 @@ class LearningAgent(Agent):
                     actions = [i for i, act in acts.items() if act == maxVal]
                 action = random.choice(actions)
         else:
-            action = random.choice(self.possible_actions)
+            action = random.choice(self.valid_actions)
         return action
 
     def learn(self, state, action, reward):
@@ -140,7 +139,7 @@ class LearningAgent(Agent):
 	    when conducting learning. """
         next_waypoint = self.planner.next_waypoint()
         next_inputs= self.env.sense(self)
-        next_state = (next_waypoint, next_inputs['light'], next_inputs['oncoming'])
+        next_state = (next_waypoint, next_inputs['light'], next_inputs['left'],next_inputs['oncoming'])
 	###########
 	## TO DO ##
 	###########
@@ -207,7 +206,7 @@ def run():
     #   display		- set to False to disable the GUI if PyGame is enabled
     #   log_metrics		- set to True to log trial and simulation results to /logs
     #   optimized 		- set to True to change the default log file name
-    sim = Simulator(env, optimized=Optimized, log_metrics=True, update_delay=0.01)
+    sim = Simulator(env, optimized=Optimized, log_metrics=True, update_delay=0.01, display=False)
     
     #############
     # Run the simulator
